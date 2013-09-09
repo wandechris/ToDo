@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ToDo</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="name">Name</string>
+    <string name="task_name">Task Name</string>
+    <string name="description">Description</string>
+    <string name="add">ADD</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="_">+</string>
+    <string name="remove_completed_task">Remove Completed Task</string>
+
+</resources>
