@@ -5,9 +5,10 @@ public class Task {
 	private String desc;
 	private boolean complete;
 	
-	public Task(String taskName, Boolean done){
+	public Task(String taskName,String descc ,Boolean done){
 		name = taskName;
 		complete = done;
+		desc = descc;
 	}
 	
 	public String getName() {

@@ -10,14 +10,19 @@ import android.widget.Toast;
 
 public class TaskList extends ListFragment {
 	
+	public static String KEY_ID = "id"; // id of the task
+	public static String KEY_NAME = "name"; // name of the task
+	public static String KEY_DESC = "description"; // description of the task
+	public static String KEY_COMPLETE = "complete"; 
+	
 	TaskAdapter taskAdapter;
 	ArrayList<Task> tasks = new ArrayList<Task>();
 	Task task;
 	Task task2;
 	
 	public TaskList(){
-		task = new Task("Sleep", false);
-		task2 = new Task("eat", true);
+		task = new Task("Sleep","on my bed" ,false);
+		task2 = new Task("eat","with them" ,true);
 		tasks.add(task);
 		tasks.add(task2);
 	}
