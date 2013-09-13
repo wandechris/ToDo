@@ -13,5 +13,6 @@
     <string name="_">+</string>
     <string name="remove_completed_task">Remove Completed Task</string>
     <string name="sign_in">Sign in</string>
+    <string name="text_desc">Text Desc</string>
 
 </resources>

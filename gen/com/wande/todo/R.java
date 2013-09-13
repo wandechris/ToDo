@@ -182,20 +182,27 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f020018;
         public static final int common_signin_btn_text_pressed_dark=0x7f020019;
         public static final int common_signin_btn_text_pressed_light=0x7f02001a;
-        public static final int ic_launcher=0x7f02001b;
+        public static final int gradient_bg=0x7f02001b;
+        public static final int gradient_bg_hover=0x7f02001c;
+        public static final int ic_launcher=0x7f02001d;
+        public static final int image_bg=0x7f02001e;
+        public static final int list_selector=0x7f02001f;
     }
     public static final class id {
         public static final int ListFragment=0x7f050005;
         public static final int RelativeLayout1=0x7f050006;
-        public static final int add=0x7f05000d;
+        public static final int add=0x7f050010;
         public static final int btn_add=0x7f050009;
-        public static final int cancel=0x7f05000b;
+        public static final int cancel=0x7f05000e;
         public static final int hybrid=0x7f050004;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int satellite=0x7f050002;
-        public static final int sign_in=0x7f05000c;
-        public static final int task_item_name=0x7f05000a;
+        public static final int sign_in=0x7f05000f;
+        public static final int task_desc_view=0x7f05000d;
+        public static final int task_item_desc=0x7f05000a;
+        public static final int task_item_name=0x7f05000b;
+        public static final int task_name_view=0x7f05000c;
         public static final int terrain=0x7f050003;
         public static final int txt_task_description=0x7f050007;
         public static final int txt_task_name=0x7f050008;
@@ -204,6 +211,7 @@ containing a value of this type.
         public static final int activity_main=0x7f030000;
         public static final int add_task=0x7f030001;
         public static final int task_item=0x7f030002;
+        public static final int task_view=0x7f030003;
     }
     public static final class menu {
         public static final int add_menu=0x7f090000;
@@ -300,6 +308,7 @@ containing a value of this type.
         public static final int remove_completed_task=0x7f06001f;
         public static final int sign_in=0x7f060020;
         public static final int task_name=0x7f060019;
+        public static final int text_desc=0x7f060021;
     }
     public static final class style {
         /** 

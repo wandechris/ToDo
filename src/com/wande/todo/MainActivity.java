@@ -20,7 +20,9 @@ public class MainActivity extends FragmentActivity implements
 
 	private ProgressDialog mConnectionProgressDialog;
 	private PlusClient mPlusClient;
-	private ConnectionResult mConnectionResult;
+	//private ConnectionResult mConnectionResult;
+
+	
 
 	private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
 	private static final String TAG = "SignIn";
@@ -36,8 +38,10 @@ public class MainActivity extends FragmentActivity implements
 		// resolved.
 		mConnectionProgressDialog = new ProgressDialog(this);
 		mConnectionProgressDialog.setMessage("Signing in...");
-
-	}
+		
+	        }
+		
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,20 +60,16 @@ public class MainActivity extends FragmentActivity implements
 			return true;
 
 		case R.id.sign_in:
-			if (mConnectionResult == null) {
-				mConnectionProgressDialog.show();
+			if (mPlusClient.isConnected() == true) {
+				//mConnectionProgressDialog.show();
+				item.setTitle(mPlusClient.getCurrentPerson().getDisplayName());
 			} else {
-				try {
-					mConnectionResult.startResolutionForResult(this,
-							REQUEST_CODE_RESOLVE_ERR);
-				} catch (SendIntentException e) {
-					// Try connecting again.
-					mConnectionResult = null;
-					mPlusClient.connect();
-				}
+				mConnectionProgressDialog.show();
+				mPlusClient.connect();
 				item.setTitle(mPlusClient.getCurrentPerson().getDisplayName());
 			}
-
+			
+			
 			return true;
 
 		default:
@@ -94,17 +94,17 @@ public class MainActivity extends FragmentActivity implements
 			}
 		}
 		// Save the result and resolve the connection failure upon a user click.
-		mConnectionResult = result;
+		//mConnectionResult = result;
 
 	}
 
 	@Override
 	public void onConnected(Bundle arg0) {
 		// TODO Auto-generated method stub
+		mConnectionProgressDialog.dismiss();
 		String accountName = mPlusClient.getAccountName();
 		Toast.makeText(this, accountName + " is connected.", Toast.LENGTH_LONG)
 				.show();
-
 	}
 
 	@Override
@@ -130,9 +130,11 @@ public class MainActivity extends FragmentActivity implements
 			Intent intent) {
 		if (requestCode == REQUEST_CODE_RESOLVE_ERR
 				&& responseCode == RESULT_OK) {
-			mConnectionResult = null;
+			//mConnectionResult = null;
 			mPlusClient.connect();
 		}
 	}
+	
+	
 
 }

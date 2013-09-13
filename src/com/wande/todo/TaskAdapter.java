@@ -1,21 +1,23 @@
 package com.wande.todo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckedTextView;
+import android.widget.TextView;
 
 public class TaskAdapter extends BaseAdapter {
 
 	private Activity activity;
-    private ArrayList<Task> data;
+    private ArrayList<HashMap<String, String>> data;
     private static LayoutInflater inflater=null; 
     
-    public TaskAdapter(Activity a, ArrayList<Task> d) {
+    public TaskAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         activity = a;
         data=d;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -36,18 +38,20 @@ public class TaskAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
         
-        Task task;
+       // Task task;
         if(convertView==null)
             vi = inflater.inflate(R.layout.task_item, null);
 
-        CheckedTextView name = (CheckedTextView)vi.findViewById(R.id.task_item_name); // title
+        TextView name = (TextView)vi.findViewById(R.id.task_item_name); // title
+        TextView desc = (TextView)vi.findViewById(R.id.task_item_desc); // title
         
         
-        task = data.get(position);
+       // task = data.get(position);
+        name.setText(data.get(position).get(TaskList.KEY_NAME));
+        desc.setText(data.get(position).get(TaskList.KEY_DESC));
         
         // Setting all values in listview
-        name.setText(task.getName());
-        name.setChecked(task.isComplete());
+      //  name.setText(task.getName());
         return vi;
     }
 

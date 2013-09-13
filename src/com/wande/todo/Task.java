@@ -3,11 +3,9 @@ package com.wande.todo;
 public class Task {
 	private String name;
 	private String desc;
-	private boolean complete;
 	
-	public Task(String taskName,String descc ,Boolean done){
+	public Task(String taskName,String descc){
 		name = taskName;
-		complete = done;
 		desc = descc;
 	}
 	
@@ -23,14 +21,5 @@ public class Task {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	public boolean isComplete() {
-		return complete;
-	}
-	public void setComplete(boolean complete) {
-		this.complete = complete;
-	}
 	
-	public void toggleComplete() {
-		complete = !isComplete();
-	}
 }
