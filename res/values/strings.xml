@@ -14,5 +14,6 @@
     <string name="remove_completed_task">Remove Completed Task</string>
     <string name="sign_in">Sign in</string>
     <string name="text_desc">Text Desc</string>
+    <string name="no_task_b_use_the_button_to_add_a_task_b_">No Task :( (use the + button to add a task>)</string>
 
 </resources>

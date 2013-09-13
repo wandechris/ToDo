@@ -304,6 +304,7 @@ containing a value of this type.
         public static final int description=0x7f06001a;
         public static final int hello_world=0x7f060017;
         public static final int name=0x7f060018;
+        public static final int no_task_b_use_the_button_to_add_a_task_b_=0x7f060022;
         public static final int remove_completed_task=0x7f06001f;
         public static final int sign_in=0x7f060020;
         public static final int task_name=0x7f060019;
