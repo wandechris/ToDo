@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="FBGooglePlayServices_libUnspecified.aar" >
+        <source path="C:\Users\WandeChris\FB\ToDo\build\exploded-bundles\FBGooglePlayServices_libUnspecified.aar\assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="C:\Users\WandeChris\FB\ToDo\assets" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="C:\Users\WandeChris\FB\ToDo\build-types\debug\assets" />
+    </dataSet>
+
+</merger>

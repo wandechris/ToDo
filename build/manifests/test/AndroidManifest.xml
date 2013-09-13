@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wande.todo.test">
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
+
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="com.wande.todo"
+                     android:label="Tests for com.wande.todo"/>
+</manifest>

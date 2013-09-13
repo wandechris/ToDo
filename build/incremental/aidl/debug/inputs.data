@@ -1,0 +1,8 @@
+# incremental data. DO NOT EDIT.
+# format is <lastModified> <length> <SHA-1> <path>
+# Encoding is UTF-8
+1378677427979 1010 f23d5da2f5acfff02a81b3dee9a6d2d923c3a4ad C:\Users\WandeChris\FB\ToDo\src\com\wande\todo\TaskList.java
+1378900614003 2393 1572ec910361cf8961545f1dd7dc69f09611dfaf C:\Users\WandeChris\FB\ToDo\src\com\wande\todo\AddActivity.java
+1378677303706 645 55e158ec1de20b5b18685bec0825582578b92306 C:\Users\WandeChris\FB\ToDo\src\com\wande\todo\Task.java
+1378677245656 1446 28a4c4bcb6c44184f62e6fe6b6db28d4f7c5b13b C:\Users\WandeChris\FB\ToDo\src\com\wande\todo\TaskAdapter.java
+1378895439165 3839 8e32ab0061d58b92e799e356c0c6018e4e6e5125 C:\Users\WandeChris\FB\ToDo\src\com\wande\todo\MainActivity.java
