@@ -47,8 +47,8 @@ public class TaskAdapter extends BaseAdapter {
         
         
        // task = data.get(position);
-        name.setText(data.get(position).get(TaskList.KEY_NAME));
-        desc.setText(data.get(position).get(TaskList.KEY_DESC));
+        name.setText(data.get(position).get(MainActivity.KEY_NAME));
+        desc.setText(data.get(position).get(MainActivity.KEY_DESC));
         
         // Setting all values in listview
       //  name.setText(task.getName());

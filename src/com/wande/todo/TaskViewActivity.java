@@ -26,8 +26,8 @@ public class TaskViewActivity extends Activity {
 		
 		intent = this.getIntent();
 		//initialise
-		taskName = intent.getExtras().getString(TaskList.KEY_NAME);
-		taskDesc = intent.getExtras().getString(TaskList.KEY_DESC);
+		taskName = intent.getExtras().getString(MainActivity.KEY_NAME);
+		taskDesc = intent.getExtras().getString(MainActivity.KEY_DESC);
 		
 		name.setText(taskName);
 		desc.setText(taskDesc);

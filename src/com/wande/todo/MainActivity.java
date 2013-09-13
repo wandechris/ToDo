@@ -1,22 +1,48 @@
 package com.wande.todo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
 import com.google.android.gms.plus.PlusClient;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements
+public class MainActivity extends ListActivity implements
 		ConnectionCallbacks, OnConnectionFailedListener {
+	
+	
+	public static String KEY_TODO_S = "to_dos"; 
+	public static String KEY_ID = "user_id"; // id of the task
+	public static String KEY_NAME = "title"; // name of the task
+	public static String KEY_DESC = "text"; // description of the task
+	public static String KEY_TODO_ID = "todo_id"; 
+	
+	
+	JSONArray todo_s = null;
+	//String url = "http://devfest-todo-app.appspot.com/getToDosForUser?user_id=110696408351640467234";//"http://devfest-todo-app.appspot.com/getToDos";
+	
+	public static ArrayList<HashMap<String, String>> tasks = new ArrayList<HashMap<String,String>>();
+	
+	
+	public static TaskAdapter taskAdapter;
 
 	private ProgressDialog mConnectionProgressDialog;
 	private PlusClient mPlusClient;
@@ -39,7 +65,64 @@ public class MainActivity extends FragmentActivity implements
 		mConnectionProgressDialog = new ProgressDialog(this);
 		mConnectionProgressDialog.setMessage("Signing in...");
 		
+		//new LoadPlaces().execute(url);
+		
 	        }
+	
+	
+	class LoadPlaces extends AsyncTask<String, String, String> {
+		
+		private final ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+		
+
+	    @Override
+	    protected void onPostExecute(String result) {            
+	        super.onPostExecute(result);
+	        taskAdapter = new TaskAdapter(MainActivity.this, tasks);
+ 	        setListAdapter(taskAdapter);
+	        dialog.dismiss();
+	    }
+
+	    @Override
+	    protected void onPreExecute() {        
+	        super.onPreExecute();
+	        dialog.setMessage("Downloading tasks...");
+	        dialog.show();            
+	    }
+
+		protected String doInBackground(String... params) {
+//			 List<Task> result = new ArrayList<Task>();
+			JSONParser jParser = new JSONParser();
+			JSONObject json = jParser.getJSONFromUrl(params[0]);
+			try {
+				// Getting Array of Tasks
+				todo_s = json.getJSONArray(KEY_TODO_S);
+				
+				// looping through All Contacts
+				for(int i = 0; i < todo_s.length(); i++){
+					JSONObject c = todo_s.getJSONObject(i);
+					
+					// Storing each json item in variable
+					String name = c.getString(KEY_NAME);
+					String desc = c.getString(KEY_DESC);
+					//String id = c.getString(KEY_ID);
+					//String todo_id = c.getString(KEY_TODO_ID);
+					
+					HashMap<String, String> map = new HashMap<String, String>();
+					//map.put("id", id);
+					map.put(KEY_NAME, name);
+		            map.put(KEY_DESC, desc);
+		       //   map.put(KEY_TODO_ID, todo_id);
+		            tasks.add(map);
+				
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			
+			return null;
+		}
+	}
 		
 	
 
@@ -52,6 +135,8 @@ public class MainActivity extends FragmentActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		
 
 		switch (item.getItemId()) {
 		case R.id.add:
@@ -60,13 +145,11 @@ public class MainActivity extends FragmentActivity implements
 			return true;
 
 		case R.id.sign_in:
-			if (mPlusClient.isConnected() == true) {
-				//mConnectionProgressDialog.show();
-				item.setTitle(mPlusClient.getCurrentPerson().getDisplayName());
-			} else {
+			if (mPlusClient.isConnected() != true) {
 				mConnectionProgressDialog.show();
 				mPlusClient.connect();
-				item.setTitle(mPlusClient.getCurrentPerson().getDisplayName());
+			} else {
+				Toast.makeText(this,"you are connected.", Toast.LENGTH_LONG).show();
 			}
 			
 			
@@ -97,14 +180,19 @@ public class MainActivity extends FragmentActivity implements
 		//mConnectionResult = result;
 
 	}
-
+	
+	String url = "http://devfest-todo-app.appspot.com/getToDosForUser?user_id=";//110696408351640467234";
+	Menu menu;
 	@Override
 	public void onConnected(Bundle arg0) {
 		// TODO Auto-generated method stub
 		mConnectionProgressDialog.dismiss();
-		String accountName = mPlusClient.getAccountName();
-		Toast.makeText(this, accountName + " is connected.", Toast.LENGTH_LONG)
-				.show();
+		String id = mPlusClient.getCurrentPerson().getId();
+		new LoadPlaces().execute(url+id);
+		
+		MenuItem item = menu.findItem(R.id.sign_in);
+		item.setTitle(mPlusClient.getCurrentPerson().getDisplayName());
+		
 	}
 
 	@Override
@@ -133,8 +221,20 @@ public class MainActivity extends FragmentActivity implements
 			//mConnectionResult = null;
 			mPlusClient.connect();
 		}
+		
 	}
 	
 	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		Intent intent;
+		intent = new Intent(this, TaskViewActivity.class); 
+		intent.putExtra(MainActivity.KEY_NAME, tasks.get(position).get(KEY_NAME));
+		intent.putExtra(MainActivity.KEY_DESC, tasks.get(position).get(KEY_DESC));
+		startActivity(intent); 
+		finish();
+	}
+
 
 }

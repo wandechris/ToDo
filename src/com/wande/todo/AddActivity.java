@@ -159,8 +159,8 @@ ConnectionCallbacks, OnConnectionFailedListener{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            	TaskList.tasks.add(map);
-            	TaskList.taskAdapter.notifyDataSetChanged();
+            	MainActivity.tasks.add(map);
+            	MainActivity.taskAdapter.notifyDataSetChanged();
            // }
             return;
 	    }
