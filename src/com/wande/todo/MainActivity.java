@@ -150,6 +150,7 @@ public class MainActivity extends ListActivity implements
 				mPlusClient.connect();
 			} else {
 				Toast.makeText(this,"you are connected.", Toast.LENGTH_LONG).show();
+				item.setTitle(mPlusClient.getCurrentPerson().getDisplayName());
 			}
 			
 			
@@ -189,9 +190,10 @@ public class MainActivity extends ListActivity implements
 		mConnectionProgressDialog.dismiss();
 		String id = mPlusClient.getCurrentPerson().getId();
 		new LoadPlaces().execute(url+id);
-		
+	/*	
 		MenuItem item = menu.findItem(R.id.sign_in);
 		item.setTitle(mPlusClient.getCurrentPerson().getDisplayName());
+		*/
 		
 	}
 
@@ -233,7 +235,6 @@ public class MainActivity extends ListActivity implements
 		intent.putExtra(MainActivity.KEY_NAME, tasks.get(position).get(KEY_NAME));
 		intent.putExtra(MainActivity.KEY_DESC, tasks.get(position).get(KEY_DESC));
 		startActivity(intent); 
-		finish();
 	}
 
 
